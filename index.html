@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1xBet Güncəl Giriş!</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+:root{
+  --bg-dark:#1a1a1a;
+  --bg-mid:#252525;
+  --bg-card:#2d2d2d;
+  --accent:#ffcc00;
+  --accent-hover:#ffdb4d;
+  --green:#00c853;
+  --red:#e53935;
+  --text:#ffffff;
+  --text-dim:#999999;
+  --border:#3a3a3a;
+}
+body{background:var(--bg-dark);color:var(--text);min-height:100vh;font-size:14px;}
+
+/* TOP BAR */
+.top-bar{background:var(--bg-mid);padding:6px 16px;display:flex;justify-content:space-between;align-items:center;font-size:12px;border-bottom:1px solid var(--border);}
+.top-lang{display:flex;gap:6px;}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:4px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-weight:600;transition:all .2s;}
+.lang-btn.active{background:var(--accent);color:var(--bg-dark);border-color:var(--accent);}
+.lang-btn:hover{border-color:var(--accent);}
+.top-info{display:flex;gap:16px;color:var(--text-dim);}
+.top-info span{display:flex;align-items:center;gap:5px;}
+.top-info i{color:var(--accent);}
+
+/* HEADER */
+.header{background:var(--bg-mid);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.6em;font-weight:900;color:var(--accent);letter-spacing:-1px;}
+.logo span{color:white;font-size:.6em;font-weight:600;letter-spacing:0;margin-left:4px;}
+.header-nav{display:flex;gap:20px;font-size:13px;}
+.header-nav a{color:var(--text-dim);text-decoration:none;font-weight:500;transition:color .2s;padding:6px 0;border-bottom:2px solid transparent;}
+.header-nav a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+.header-nav a.active{color:var(--accent);border-bottom-color:var(--accent);}
+.header-right{display:flex;gap:8px;align-items:center;}
+.btn-login{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 18px;border-radius:6px;font-weight:600;cursor:pointer;font-size:13px;transition:all .2s;}
+.btn-login:hover{background:var(--accent);color:var(--bg-dark);}
+.btn-register{background:var(--accent);color:var(--bg-dark);border:none;padding:8px 18px;border-radius:6px;font-weight:700;cursor:pointer;font-size:13px;transition:all .2s;}
+.btn-register:hover{background:var(--accent-hover);}
+.balance{background:var(--bg-card);padding:8px 14px;border-radius:6px;font-weight:700;color:var(--accent);font-size:13px;border:1px solid var(--border);}
+.balance i{margin-right:6px;}
+
+/* MAIN NAV */
+.main-nav{background:var(--bg-dark);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;}
+.main-nav::-webkit-scrollbar{height:0;}
+.nav-tab{padding:12px 22px;background:transparent;border:none;color:var(--text-dim);font-weight:600;cursor:pointer;font-size:13px;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.nav-tab i{font-size:1.1em;}
+
+/* CONTAINER */
+.container{max-width:1400px;margin:0 auto;padding:16px;}
+
+/* HERO BANNER */
+.hero-banner{background:linear-gradient(135deg,#ffcc00 0%,#ff9900 100%);border-radius:12px;padding:32px;margin-bottom:20px;position:relative;overflow:hidden;}
+.hero-banner::after{content:'⚽';position:absolute;right:-20px;bottom:-30px;font-size:180px;opacity:.15;}
+.hero-banner h1{color:var(--bg-dark);font-size:1.8em;font-weight:900;margin-bottom:10px;}
+.hero-banner p{color:var(--bg-dark);font-size:.95em;font-weight:600;margin-bottom:16px;opacity:.85;}
+.hero-banner .btn-hero{background:var(--bg-dark);color:var(--accent);border:none;padding:12px 28px;border-radius:8px;font-weight:800;cursor:pointer;font-size:14px;transition:all .2s;position:relative;z-index:1;}
+.hero-banner .btn-hero:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3);}
+
+/* SECTION */
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.section-title h2{font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px;}
+.section-title h2 i{color:var(--accent);}
+.section-title a{color:var(--accent);text-decoration:none;font-size:12px;font-weight:600;}
+
+/* MATCHES GRID */
+.matches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-bottom:24px;}
+.match-card{background:var(--bg-card);border-radius:10px;padding:14px;border:1px solid var(--border);transition:all .2s;}
+.match-card:hover{border-color:var(--accent);}
+.match-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;color:var(--text-dim);}
+.match-league{font-weight:700;color:var(--accent);text-transform:uppercase;}
+.match-live{background:var(--red);color:white;padding:2px 8px;border-radius:4px;font-weight:700;font-size:10px;display:flex;align-items:center;gap:4px;}
+.match-live::before{content:'';width:6px;height:6px;background:white;border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.match-teams{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.team{font-weight:700;font-size:14px;flex:1;}
+.team.away{text-align:right;}
+.match-score{background:var(--bg-dark);padding:8px 16px;border-radius:8px;font-weight:900;font-size:16px;color:var(--accent);min-width:70px;text-align:center;}
+.match-time{background:var(--bg-dark);padding:8px 16px;border-radius:8px;font-weight:700;font-size:12px;color:var(--text-dim);}
+.match-odds{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.odds-btn{background:var(--bg-dark);border:1px solid var(--border);color:var(--text);padding:10px 6px;border-radius:6px;cursor:pointer;transition:all .2s;text-align:center;}
+.odds-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--bg-dark);}
+.odds-btn.selected{background:var(--accent);border-color:var(--accent);color:var(--bg-dark);}
+.odds-btn small{display:block;font-size:10px;opacity:.6;margin-bottom:3px;font-weight:500;}
+.odds-btn strong{font-size:14px;font-weight:800;}
+
+/* BET SLIP */
+.betslip{position:fixed;bottom:0;right:16px;width:340px;background:var(--bg-card);border-radius:12px 12px 0 0;border:1px solid var(--border);border-bottom:none;z-index:200;box-shadow:0 -4px 20px rgba(0,0,0,.4);}
+.betslip-header{background:var(--bg-mid);padding:12px 16px;border-radius:12px 12px 0 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;border-bottom:1px solid var(--border);}
+.betslip-header h3{font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px;}
+.betslip-header .count{background:var(--accent);color:var(--bg-dark);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:800;}
+.betslip-body{padding:14px;max-height:400px;overflow-y:auto;}
+.slip-item{background:var(--bg-dark);padding:10px;border-radius:6px;margin-bottom:8px;font-size:12px;position:relative;}
+.slip-item .remove{position:absolute;top:6px;right:8px;background:none;border:none;color:var(--red);cursor:pointer;font-size:14px;}
+.slip-item .match{color:var(--text-dim);font-size:11px;margin-bottom:4px;}
+.slip-item .pick{font-weight:700;color:var(--text);display:flex;justify-content:space-between;}
+.slip-item .odds{color:var(--accent);font-weight:800;}
+.slip-total{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--border);margin-top:10px;font-size:13px;font-weight:700;}
+.slip-total .val{color:var(--accent);}
+.slip-input{width:100%;padding:12px;background:var(--bg-dark);border:1px solid var(--border);border-radius:6px;color:white;margin:10px 0;font-size:14px;}
+.slip-input:focus{outline:none;border-color:var(--accent);}
+.slip-potential{display:flex;justify-content:space-between;padding:8px 0;color:var(--green);font-weight:700;font-size:13px;}
+.btn-place-bet{width:100%;padding:14px;background:var(--accent);color:var(--bg-dark);border:none;border-radius:6px;font-weight:800;font-size:14px;cursor:pointer;transition:all .2s;margin-top:8px;}
+.btn-place-bet:hover{background:var(--accent-hover);transform:translateY(-1px);}
+
+/* AUTH MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px;backdrop-filter:blur(4px);}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--bg-card);border-radius:12px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;border:1px solid var(--border);}
+.modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.modal-header h3{font-size:16px;font-weight:800;color:var(--accent);}
+.modal-close{background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;}
+.modal-body{padding:22px;}
+.auth-tabs{display:flex;gap:4px;background:var(--bg-dark);padding:4px;border-radius:8px;margin-bottom:18px;}
+.auth-tab{flex:1;padding:10px;background:transparent;border:none;color:var(--text-dim);font-weight:600;cursor:pointer;font-size:13px;border-radius:6px;transition:all .2s;}
+.auth-tab.active{background:var(--accent);color:var(--bg-dark);}
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-size:12px;color:var(--text-dim);margin-bottom:6px;font-weight:600;}
+.form-group input{width:100%;padding:12px;background:var(--bg-dark);border:1px solid var(--border);border-radius:6px;color:white;font-size:14px;transition:border-color .2s;}
+.form-group input:focus{outline:none;border-color:var(--accent);}
+.btn-submit{width:100%;padding:14px;background:var(--accent);color:var(--bg-dark);border:none;border-radius:6px;font-weight:800;font-size:14px;cursor:pointer;transition:all .2s;}
+.btn-submit:hover{background:var(--accent-hover);}
+.alert{padding:10px 14px;border-radius:6px;font-size:12px;margin-bottom:12px;}
+.alert-info{background:rgba(59,130,246,.15);border:1px solid #3b82f6;color:#93c5fd;}
+.alert-danger{background:rgba(229,57,53,.15);border:1px solid var(--red);color:#ff8a80;}
+
+/* DEPOSIT MODAL */
+.deposit-card{background:linear-gradient(135deg,var(--bg-mid),var(--bg-dark));border:1px solid var(--accent);border-radius:12px;padding:20px;margin:16px 0;}
+.deposit-card .label{font-size:11px;color:var(--text-dim);letter-spacing:1px;margin-bottom:6px;font-weight:600;}
+.deposit-card .card-number{font-size:1.4em;font-weight:900;color:var(--accent);font-family:'Courier New',monospace;letter-spacing:2px;margin-bottom:14px;word-break:break-all;}
+.deposit-card .row{display:flex;justify-content:space-between;font-size:12px;color:var(--text-dim);margin-bottom:10px;}
+.deposit-card .row strong{color:var(--text);font-weight:700;}
+.deposit-card .copy-btn{background:var(--accent);color:var(--bg-dark);border:none;padding:8px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:12px;margin-top:8px;}
+.amount-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;}
+.amount-btn{padding:12px;background:var(--bg-dark);border:1px solid var(--border);color:var(--text);border-radius:6px;cursor:pointer;font-weight:700;font-size:13px;transition:all .2s;}
+.amount-btn:hover,.amount-btn.selected{background:var(--accent);color:var(--bg-dark);border-color:var(--accent);}
+
+/* FOOTER */
+.footer{background:var(--bg-mid);padding:40px 16px 100px;margin-top:40px;border-top:1px solid var(--border);}
+.footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
+.footer-col h4{color:var(--accent);font-size:13px;font-weight:800;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;}
+.footer-col a,.footer-col p{display:block;color:var(--text-dim);text-decoration:none;font-size:12px;margin-bottom:8px;line-height:1.6;}
+.footer-col a:hover{color:var(--accent);}
+.footer-bottom{text-align:center;padding-top:24px;margin-top:24px;border-top:1px solid var(--border);color:var(--text-dim);font-size:11px;max-width:1400px;margin:24px auto 0;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .header-nav{display:none;}
+  .matches-grid{grid-template-columns:1fr;}
+  .betslip{width:100%;right:0;left:0;border-radius:12px 12px 0 0;}
+  .hero-banner h1{font-size:1.3em;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-lang">
+    <button class="lang-btn active" onclick="setLang('az')">AZ</button>
+    <button class="lang-btn" onclick="setLang('tr')">TR</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+  </div>
+  <div class="top-info">
+    <span><i class="fas fa-phone"></i> +994 12 XXX XX XX</span>
+    <span><i class="fas fa-headset"></i> <span data-i18n="support">24/7 Dəstək</span></span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">BetAZ <span data-i18n="slogan">SPORTS</span></div>
+  <div class="header-nav">
+    <a href="#" class="active" data-i18n="nav_sports">İdman</a>
+    <a href="#" data-i18n="nav_live">Canlı</a>
+    <a href="#" data-i18n="nav_casino">Kazino</a>
+    <a href="#" data-i18n="nav_promo">Promosiyalar</a>
+  </div>
+  <div class="header-right">
+    <div class="balance" id="balanceBox" style="display:none;"><i class="fas fa-wallet"></i> <span id="balanceVal">0.00</span> ₼</div>
+    <button class="btn-login" id="btnLogin" onclick="openAuth('login')" data-i18n="login">Giriş</button>
+    <button class="btn-register" id="btnRegister" onclick="openAuth('register')" data-i18n="register">Qeydiyyat</button>
+    <button class="btn-login" id="btnLogout" style="display:none;" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i></button>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<div class="main-nav">
+  <button class="nav-tab active" onclick="switchTab('sports',this)"><i class="fas fa-futbol"></i> <span data-i18n="tab_football">Futbol</span></button>
+  <button class="nav-tab" onclick="switchTab('basket',this)"><i class="fas fa-basketball-ball"></i> <span data-i18n="tab_basket">Basketbol</span></button>
+  <button class="nav-tab" onclick="switchTab('tennis',this)"><i class="fas fa-table-tennis"></i> <span data-i18n="tab_tennis">Tennis</span></button>
+  <button class="nav-tab" onclick="switchTab('esports',this)"><i class="fas fa-gamepad"></i> <span data-i18n="tab_esports">E-Sports</span></button>
+  <button class="nav-tab" onclick="switchTab('live',this)"><i class="fas fa-circle" style="color:#e53935;"></i> <span data-i18n="tab_live">Canlı</span></button>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero-banner">
+    <h1 data-i18n="hero_title">100% Bonus İlk Depozitə!</h1>
+    <p data-i18n="hero_sub">İlk depozitinizə 100% bonus qazanın. Minimum 10 ₼.</p>
+    <button class="btn-hero" onclick="openDeposit()" data-i18n="hero_btn">Depozit et</button>
+  </div>
+
+  <!-- MATCHES -->
+  <div class="section-title">
+    <h2><i class="fas fa-fire"></i> <span data-i18n="popular_matches">Populyar matçlar</span></h2>
+    <a href="#" data-i18n="see_all">Hamısına bax →</a>
+  </div>
+  <div class="matches-grid" id="matchesGrid"></div>
+</div>
+
+<!-- BETSLIP -->
+<div class="betslip" id="betslip">
+  <div class="betslip-header" onclick="toggleSlip()">
+    <h3><i class="fas fa-receipt"></i> <span data-i18n="bet_slip">Mərc qeydi</span> <span class="count" id="slipCount">0</span></h3>
+    <button onclick="event.stopPropagation();clearSlip()" style="background:none;border:none;color:#999;cursor:pointer;font-size:14px;">🗑️</button>
+  </div>
+  <div class="betslip-body" id="betslipBody">
+    <div id="slipItems" style="text-align:center;color:#999;padding:20px 0;" data-i18n="slip_empty">Mərc qeydi boşdur</div>
+    <div class="slip-total"><span data-i18n="total_odds">Ümumi əmsal:</span><span class="val" id="totalOdds">1.00</span></div>
+    <input type="number" class="slip-input" id="betAmount" placeholder="Mərc məbləği (₼)" min="1" oninput="updatePotential()">
+    <div class="slip-potential"><span data-i18n="potential_win">Potensial qazanc:</span><span id="potentialWin">0.00 ₼</span></div>
+    <button class="btn-place-bet" onclick="placeBet()" data-i18n="place_bet">Mərc et</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>BetAZ</h4>
+      <p data-i18n="footer_about">Rəsmi onlayn bahis platforması. Lisenziyalı №8048/JAZ.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_help">Kömək</h4>
+      <a href="#" data-i18n="footer_faq">FAQ</a>
+      <a href="#" data-i18n="footer_contact">Əlaqə</a>
+      <a href="#" data-i18n="footer_rules">Qaydalar</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_legal">Hüquqi</h4>
+      <a href="#" data-i18n="footer_terms">İstifadə şərtləri</a>
+      <a href="#" data-i18n="footer_privacy">Məxfilik</a>
+      <a href="#" data-i18n="footer_responsible">Məsuliyyətli oyun</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_payments">Ödənişlər</h4>
+      <p>Visa / Mastercard</p>
+      <p>USDT (TRC20/ERC20)</p>
+      <p>Bitcoin</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 BetAZ. <span data-i18n="footer_rights">Bütün hüquqlar qorunur.</span> | 18+</div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="authTitle" data-i18n="login">Giriş</h3>
+      <button class="modal-close" onclick="closeModal('authModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLoginBtn" onclick="switchAuth('login')" data-i18n="login">Giriş</button>
+        <button class="auth-tab" id="tabRegisterBtn" onclick="switchAuth('register')" data-i18n="register">Qeydiyyat</button>
+      </div>
+      <div id="loginForm">
+        <div class="form-group"><label data-i18n="username">İstifadəçi adı</label><input type="text" id="loginUser"></div>
+        <div class="form-group"><label data-i18n="password">Şifrə</label><input type="password" id="loginPass"></div>
+        <button class="btn-submit" onclick="doLogin()" data-i18n="login">Daxil ol</button>
+      </div>
+      <div id="registerForm" style="display:none;">
+        <div class="form-group"><label data-i18n="username">İstifadəçi adı</label><input type="text" id="regUser"></div>
+        <div class="form-group"><label data-i18n="email">E-poçt</label><input type="email" id="regEmail"></div>
+        <div class="form-group"><label data-i18n="password">Şifrə</label><input type="password" id="regPass"></div>
+        <button class="btn-submit" onclick="doRegister()" data-i18n="register">Qeydiyyatdan keç</button>
+      </div>
+      <div class="alert alert-danger" id="authErr" style="display:none;margin-top:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DEPOSIT MODAL -->
+<div class="modal-overlay" id="depositModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 data-i18n="deposit">Depozit</h3>
+      <button class="modal-close" onclick="closeModal('depositModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-info"><i class="fas fa-info-circle"></i> <span data-i18n="deposit_info">Ödənişi aşağıdakı karta köçürün və məbləği daxil edin.</span></div>
+      
+      <div class="deposit-card">
+        <div class="label" data-i18n="card_number">KART NÖMRƏSİ</div>
+        <div class="card-number" id="depositCardNum">4169 7388 5282 3602</div>
+        <div class="row"><span data-i18n="card_holder">Kart sahibi:</span><strong>Umud</strong></div>
+        <div class="row"><span data-i18n="bank">Bank:</span><strong>Kapital Bank</strong></div>
+        <button class="copy-btn" onclick="copyCard()"><i class="fas fa-copy"></i> <span data-i18n="copy">Kopyala</span></button>
+      </div>
+
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="setDepositAmount(10,this)">10 ₼</button>
+        <button class="amount-btn" onclick="setDepositAmount(20,this)">20 ₼</button>
+        <button class="amount-btn" onclick="setDepositAmount(50,this)">50 ₼</button>
+        <button class="amount-btn" onclick="setDepositAmount(100,this)">100 ₼</button>
+        <button class="amount-btn" onclick="setDepositAmount(200,this)">200 ₼</button>
+        <button class="amount-btn" onclick="setDepositAmount(500,this)">500 ₼</button>
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="amount">Məbləğ (₼)</label>
+        <input type="number" id="depositAmount" min="10" value="10">
+      </div>
+
+      <button class="btn-submit" onclick="confirmDeposit()" data-i18n="confirm_deposit">Depoziti təsdiqlə</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== TRANSLATIONS =====
+const TRANSLATIONS = {
+  az: {
+    slogan:"SPORTS", support:"24/7 Dəstək", nav_sports:"İdman", nav_live:"Canlı", nav_casino:"Kazino", nav_promo:"Promosiyalar",
+    login:"Giriş", register:"Qeydiyyat", username:"İstifadəçi adı", password:"Şifrə", email:"E-poçt",
+    tab_football:"Futbol", tab_basket:"Basketbol", tab_tennis:"Tennis", tab_esports:"E-Sports", tab_live:"Canlı",
+    hero_title:"100% Bonus İlk Depozitə!", hero_sub:"İlk depozitinizə 100% bonus qazanın. Minimum 10 ₼.", hero_btn:"Depozit et",
+    popular_matches:"Populyar matçlar", see_all:"Hamısına bax →",
+    bet_slip:"Mərc qeydi", slip_empty:"Mərc qeydi boşdur", total_odds:"Ümumi əmsal:", potential_win:"Potensial qazanc:", place_bet:"Mərc et",
+    footer_about:"Rəsmi onlayn bahis platforması. Lisenziyalı №8048/JAZ.",
+    footer_help:"Kömək", footer_faq:"FAQ", footer_contact:"Əlaqə", footer_rules:"Qaydalar",
+    footer_legal:"Hüquqi", footer_terms:"İstifadə şərtləri", footer_privacy:"Məxfilik", footer_responsible:"Məsuliyyətli oyun",
+    footer_payments:"Ödənişlər", footer_rights:"Bütün hüquqlar qorunur.",
+    deposit:"Depozit", deposit_info:"Ödənişi aşağıdakı karta köçürün və məbləği daxil edin.",
+    card_number:"KART NÖMRƏSİ", card_holder:"Kart sahibi:", bank:"Bank:", copy:"Kopyala",
+    amount:"Məbləğ (₼)", confirm_deposit:"Depoziti təsdiqlə",
+    err_fill:"Bütün sahələri doldurun", err_user_exists:"Bu istifadəçi adı mövcuddur",
+    err_login:"İstifadəçi adı və ya şifrə yanlışdır", err_balance:"Balans kifayət deyil",
+    err_min_bet:"Minimum mərc 1 ₼", err_min_dep:"Minimum depozit 10 ₼",
+    bet_placed:"✅ Mərc qəbul edildi!", deposit_done:"✅ Depozit təsdiqləndi (demo)",
+    copied:"✅ Kart nömrəsi kopyalandı!"
+  },
+  tr: {
+    slogan:"SPORTS", support:"7/24 Destek", nav_sports:"Spor", nav_live:"Canlı", nav_casino:"Casino", nav_promo:"Promosyonlar",
+    login:"Giriş", register:"Kayıt", username:"Kullanıcı adı", password:"Şifre", email:"E-posta",
+    tab_football:"Futbol", tab_basket:"Basketbol", tab_tennis:"Tenis", tab_esports:"E-Spor", tab_live:"Canlı",
+    hero_title:"İlk Yatırıma %100 Bonus!", hero_sub:"İlk yatırımınıza %100 bonus kazanın. Minimum 10 ₼.", hero_btn:"Para Yatır",
+    popular_matches:"Popüler maçlar", see_all:"Tümünü gör →",
+    bet_slip:"Bahis kuponu", slip_empty:"Kupon boş", total_odds:"Toplam oran:", potential_win:"Potansiyel kazanç:", place_bet:"Bahis yap",
+    footer_about:"Resmi online bahis platformu. Lisanslı №8048/JAZ.",
+    footer_help:"Yardım", footer_faq:"SSS", footer_contact:"İletişim", footer_rules:"Kurallar",
+    footer_legal:"Hukuki", footer_terms:"Kullanım şartları", footer_privacy:"Gizlilik", footer_responsible:"Sorumlu oyun",
+    footer_payments:"Ödemeler", footer_rights:"Tüm hakları saklıdır.",
+    deposit:"Para Yatır", deposit_info:"Ödemeyi aşağıdaki karta yapın ve tutarı girin.",
+    card_number:"KART NUMARASI", card_holder:"Kart sahibi:", bank:"Banka:", copy:"Kopyala",
+    amount:"Tutar (₼)", confirm_deposit:"Yatırımı onayla",
+    err_fill:"Tüm alanları doldurun", err_user_exists:"Bu kullanıcı adı mevcut",
+    err_login:"Kullanıcı adı veya şifre yanlış", err_balance:"Bakiye yetersiz",
+    err_min_bet:"Minimum bahis 1 ₼", err_min_dep:"Minimum yatırım 10 ₼",
+    bet_placed:"✅ Bahis kabul edildi!", deposit_done:"✅ Yatırım onaylandı (demo)",
+    copied:"✅ Kart numarası kopyalandı!"
+  },
+  ru: {
+    slogan:"СПОРТ", support:"Поддержка 24/7", nav_sports:"Спорт", nav_live:"Live", nav_casino:"Казино", nav_promo:"Акции",
+    login:"Вход", register:"Регистрация", username:"Имя пользователя", password:"Пароль", email:"E-mail",
+    tab_football:"Футбол", tab_basket:"Баскетбол", tab_tennis:"Теннис", tab_esports:"Киберспорт", tab_live:"Live",
+    hero_title:"100% Бонус на Первый Депозит!", hero_sub:"Получите 100% бонус на первый депозит. Минимум 10 ₼.", hero_btn:"Пополнить",
+    popular_matches:"Популярные матчи", see_all:"Смотреть все →",
+    bet_slip:"Купон", slip_empty:"Купон пуст", total_odds:"Общий коэффициент:", potential_win:"Потенциальный выигрыш:", place_bet:"Сделать ставку",
+    footer_about:"Официальная платформа онлайн-ставок. Лицензия №8048/JAZ.",
+    footer_help:"Помощь", footer_faq:"FAQ", footer_contact:"Контакты", footer_rules:"Правила",
+    footer_legal:"Юридическая информация", footer_terms:"Условия использования", footer_privacy:"Конфиденциальность", footer_responsible:"Ответственная игра",
+    footer_payments:"Платежи", footer_rights:"Все права защищены.",
+    deposit:"Депозит", deposit_info:"Переведите оплату на карту ниже и введите сумму.",
+    card_number:"НОМЕР КАРТЫ", card_holder:"Владелец карты:", bank:"Банк:", copy:"Копировать",
+    amount:"Сумма (₼)", confirm_deposit:"Подтвердить депозит",
+    err_fill:"Заполните все поля", err_user_exists:"Это имя уже занято",
+    err_login:"Неверное имя пользователя или пароль", err_balance:"Недостаточно средств",
+    err_min_bet:"Минимальная ставка 1 ₼", err_min_dep:"Минимальный депозит 10 ₼",
+    bet_placed:"✅ Ставка принята!", deposit_done:"✅ Депозит подтверждён (демо)",
+    copied:"✅ Номер карты скопирован!"
+  }
+};
+let LANG = 'az';
+let currentUser = null;
+let users = JSON.parse(localStorage.getItem('betaz_users') || '[]');
+let betSlip = [];
+
+function t(key) { return TRANSLATIONS[LANG][key] || key; }
+
+function setLang(lang) {
+  LANG = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang][key]) el.textContent = TRANSLATIONS[lang][key];
+  });
+}
+
+// ===== MATCHES =====
+const MATCHES = [
+  { id:1, league:"Premier Liqa", home:"Qarabağ", away:"Neftçi", o1:1.85, oX:3.40, o2:4.20, status:"live", minute:67, s1:2, s2:1 },
+  { id:2, league:"Premier Liqa", home:"Sabah", away:"Zirə", o1:2.10, oX:3.20, o2:3.50, status:"upcoming", time:"20:00" },
+  { id:3, league:"La Liga", home:"Real Madrid", away:"Barcelona", o1:2.05, oX:3.60, o2:3.30, status:"upcoming", time:"22:00" },
+  { id:4, league:"Champions League", home:"Man City", away:"Bayern", o1:1.95, oX:3.80, o2:3.60, status:"live", minute:34, s1:0, s2:0 },
+  { id:5, league:"Serie A", home:"Inter", away:"Milan", o1:2.30, oX:3.10, o2:3.15, status:"upcoming", time:"21:45" },
+  { id:6, league:"Premier League", home:"Liverpool", away:"Arsenal", o1:2.15, oX:3.50, o2:3.20, status:"upcoming", time:"19:30" }
+];
+
+function renderMatches() {
+  const grid = document.getElementById('matchesGrid');
+  grid.innerHTML = MATCHES.map(m => {
+    const isLive = m.status === 'live';
+    const center = isLive
+      ? `<div class="match-score">${m.s1} - ${m.s2}<div style="font-size:10px;color:#999;">${m.minute}'</div></div>`
+      : `<div class="match-time">${m.time}</div>`;
+    return `
+      <div class="match-card">
+        <div class="match-header">
+          <span class="match-league">${m.league}</span>
+          ${isLive ? '<span class="match-live">CANLI</span>' : ''}
+        </div>
+        <div class="match-teams">
+          <div class="team">${m.home}</div>
+          ${center}
+          <div class="team away">${m.away}</div>
+        </div>
+        <div class="match-odds">
+          <button class="odds-btn" onclick="addToSlip(${m.id},'1',${m.o1},'${m.home}','${m.home} - ${m.away}')"><small>1</small><strong>${m.o1}</strong></button>
+          <button class="odds-btn" onclick="addToSlip(${m.id},'X',${m.oX},'Heç-heçə','${m.home} - ${m.away}')"><small>X</small><strong>${m.oX}</strong></button>
+          <button class="odds-btn" onclick="addToSlip(${m.id},'2',${m.o2},'${m.away}','${m.home} - ${m.away}')"><small>2</small><strong>${m.o2}</strong></button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ===== BET SLIP =====
+function addToSlip(mid, type, odds, label, matchName) {
+  const key = mid + '_' + type;
+  if (betSlip.find(b => b.key === key)) {
+    betSlip = betSlip.filter(b => b.key !== key);
+  } else {
+    betSlip.push({ key, mid, type, odds, label, matchName });
+  }
+  renderSlip();
+}
+
+function renderSlip() {
+  const count = document.getElementById('slipCount');
+  const items = document.getElementById('slipItems');
+  count.textContent = betSlip.length;
+  if (betSlip.length === 0) {
+    items.innerHTML = `<div style="text-align:center;color:#999;padding:20px 0;">${t('slip_empty')}</div>`;
+    document.getElementById('totalOdds').textContent = '1.00';
+    updatePotential();
+    return;
+  }
+  items.innerHTML = betSlip.map(b => `
+    <div class="slip-item">
+      <button class="remove" onclick="addToSlip(${b.mid},'${b.type}',${b.odds},'${b.label}','${b.matchName}')">×</button>
+      <div class="match">${b.matchName}</div>
+      <div class="pick"><span>${b.label} (${b.type})</span><span class="odds">${b.odds}</span></div>
+    </div>`).join('');
+  const total = betSlip.reduce((a, b) => a * b.odds, 1);
+  document.getElementById('totalOdds').textContent = total.toFixed(2);
+  updatePotential();
+}
+
+function clearSlip() { betSlip = []; renderSlip(); }
+function toggleSlip() {
+  const body = document.getElementById('betslipBody');
+  body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+function updatePotential() {
+  const amount = parseFloat(document.getElementById('betAmount').value) || 0;
+  const total = betSlip.reduce((a, b) => a * b.odds, 1);
+  document.getElementById('potentialWin').textContent = (amount * total).toFixed(2) + ' ₼';
+}
+
+function placeBet() {
+  if (!currentUser) { openAuth('login'); return; }
+  if (betSlip.length === 0) return;
+  const amount = parseFloat(document.getElementById('betAmount').value);
+  if (!amount || amount < 1) { alert(t('err_min_bet')); return; }
+  if (amount > currentUser.balance) { alert(t('err_balance')); return; }
+  currentUser.balance -= amount;
+  saveUser();
+  updateUI();
+  alert(t('bet_placed'));
+  clearSlip();
+}
+
+// ===== AUTH =====
+function openAuth(type) {
+  document.getElementById('authModal').classList.add('active');
+  switchAuth(type);
+}
+function switchAuth(type) {
+  document.getElementById('tabLoginBtn').classList.toggle('active', type === 'login');
+  document.getElementById('tabRegisterBtn').classList.toggle('active', type === 'register');
+  document.getElementById('loginForm').style.display = type === 'login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = type === 'register' ? 'block' : 'none';
+  document.getElementById('authErr').style.display = 'none';
+}
+function doRegister() {
+  const u = document.getElementById('regUser').value.trim();
+  const e = document.getElementById('regEmail').value.trim();
+  const p = document.getElementById('regPass').value;
+  if (!u || !e || !p) { showAuthErr(t('err_fill')); return; }
+  if (users.find(x => x.user === u)) { showAuthErr(t('err_user_exists')); return; }
+  currentUser = { id: Date.now(), user: u, email: e, pass: p, balance: 0 };
+  users.push(currentUser);
+  saveUser();
+  closeModal('authModal');
+  updateUI();
+}
+function doLogin() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const found = users.find(x => x.user === u && x.pass === p);
+  if (!found) { showAuthErr(t('err_login')); return; }
+  currentUser = found;
+  localStorage.setItem('betaz_current', JSON.stringify(currentUser));
+  closeModal('authModal');
+  updateUI();
+}
+function doLogout() {
+  currentUser = null;
+  localStorage.removeItem('betaz_current');
+  updateUI();
+}
+function saveUser() {
+  users = users.map(u => u.id === currentUser.id ? currentUser : u);
+  localStorage.setItem('betaz_users', JSON.stringify(users));
+  localStorage.setItem('betaz_current', JSON.stringify(currentUser));
+}
+function showAuthErr(msg) {
+  const el = document.getElementById('authErr');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function updateUI() {
+  if (currentUser) {
+    document.getElementById('balanceBox').style.display = 'flex';
+    document.getElementById('balanceVal').textContent = currentUser.balance.toFixed(2);
+    document.getElementById('btnLogin').style.display = 'none';
+    document.getElementById('btnRegister').style.display = 'none';
+    document.getElementById('btnLogout').style.display = 'block';
+  } else {
+    document.getElementById('balanceBox').style.display = 'none';
+    document.getElementById('btnLogin').style.display = 'block';
+    document.getElementById('btnRegister').style.display = 'block';
+    document.getElementById('btnLogout').style.display = 'none';
+  }
+}
+
+// ===== DEPOSIT =====
+function openDeposit() {
+  if (!currentUser) { openAuth('login'); return; }
+  document.getElementById('depositModal').classList.add('active');
+}
+function setDepositAmount(v, btn) {
+  document.getElementById('depositAmount').value = v;
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function copyCard() {
+  navigator.clipboard.writeText('4169738852823602');
+  alert(t('copied'));
+}
+function confirmDeposit() {
+  const amount = parseFloat(document.getElementById('depositAmount').value);
+  if (!amount || amount < 10) { alert(t('err_min_dep')); return; }
+  currentUser.balance += amount;
+  saveUser();
+  updateUI();
+  closeModal('depositModal');
+  alert(t('deposit_confirmed') || '✅');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('betaz_current');
+  if (saved) currentUser = JSON.parse(saved);
+  renderMatches();
+  updateUI();
+});
+</script>
+</body>
+</html>
